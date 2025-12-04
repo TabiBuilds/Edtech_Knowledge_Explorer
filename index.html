@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ed-Tech Knowledge Explorer</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+    <header>
+        <h1>Ed-Tech Knowledge Explorer</h1>
+        <p>Exploring educational technology trends via Open Library API.</p>
+    </header>
+
+    <main class="dashboard-container">
+        
+        <section class="chart-section">
+            <h2>Publication Timeline</h2>
+            <div class="chart-wrapper">
+    <canvas id="myChart" role="img" aria-label="A bar chart showing the first publication years of various Educational Technology books."></canvas>
+</div>
+        </section>
+
+        <section class="list-section">
+            <h2>Top Resources</h2>
+            <div id="book-grid" class="book-grid">
+                <p>Loading data...</p>
+            </div>
+        </section>
+
+    </main>
+
+    <script type="module" src="script.js"></script>
+</body>
+</html>

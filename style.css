@@ -1,0 +1,54 @@
+/* Basic Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; font-family: sans-serif; }
+
+body { background-color: #f4f4f9; color: #333; padding: 20px; }
+
+header { text-align: center; margin-bottom: 30px; }
+
+/* FLEXBOX LAYOUT (Mobile First) */
+.dashboard-container {
+    display: flex;
+    flex-direction: column; /* Stacks vertically on mobile */
+    gap: 20px;
+}
+
+/* Chart Section */
+.chart-section, .list-section {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    flex: 1; /* Both sections take equal width */
+}
+
+/* Responsive Chart Wrapper */
+.chart-wrapper {
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
+/* Book Grid Styling */
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.book-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    background: #fafafa;
+}
+
+.book-card h3 { font-size: 1rem; margin-bottom: 5px; }
+.book-card p { font-size: 0.85rem; color: #666; }
+
+/* DESKTOP LAYOUT */
+@media (min-width: 768px) {
+    .dashboard-container {
+        flex-direction: row; /* Switches to side-by-side on desktop */
+    }
+}
