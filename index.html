@@ -3,35 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ed-Tech Knowledge Explorer</title>
+    <title>EdTech Knowledge Explorer</title>
+    
+    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Chart.js (Visualization) -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
-    <header>
-        <h1>Ed-Tech Knowledge Explorer</h1>
-        <p>Exploring educational technology trends via Open Library API.</p>
-    </header>
-
-    <main class="dashboard-container">
+    <div class="app-container">
         
-        <section class="chart-section">
-            <h2>Publication Timeline</h2>
-            <div class="chart-wrapper">
-    <canvas id="myChart" role="img" aria-label="A bar chart showing the first publication years of various Educational Technology books."></canvas>
-</div>
-        </section>
-
-        <section class="list-section">
-            <h2>Top Resources</h2>
-            <div id="book-grid" class="book-grid">
-                <p>Loading data...</p>
+        <!-- SIDEBAR NAVIGATION -->
+        <nav class="sidebar">
+            <div class="logo-area">
+                <h2>EdTech<br>Explorer</h2>
             </div>
-        </section>
 
-    </main>
+            <div class="nav-section">
+                <h3>View Mode</h3>
+                <ul class="nav-links">
+                    <!-- Navigation Tabs -->
+                    <li class="nav-item active" data-target="view-timeline" tabindex="0">
+                        <i class="fa-solid fa-chart-line"></i> Timeline
+                    </li>
+                    <li class="nav-item" data-target="view-list" tabindex="0">
+                        <i class="fa-solid fa-list"></i> Resource List
+                    </li>
+                </ul>
+            </div>
 
-    <script type="module" src="script.js"></script>
+            <div class="nav-section">
+                <h3>Data Source</h3>
+                <div class="info-box">
+                    <p>
+                        <i class="fa-solid fa-database"></i> 
+                        <!-- LINK TO JSON API -->
+                        <a href="https://openlibrary.org/subjects/education_technology.json" target="_blank" class="api-link" aria-label="Open Open Library JSON API in new tab">Open Library API</a>
+                    </p>
+                    <small>Subject: Education Technology</small>
+                </div>
+            </div>
+        </nav>
+
+        <!-- MAIN CONTENT AREA -->
+        <main class="content-area">
+            
+            <!-- Header -->
+            <header class="top-bar">
+                <h1>Exploring Educational Technology Book Trends</h1>
+            </header>
+
+            <!-- VIEW 1: TIMELINE (Chart.js) -->
+            <section id="view-timeline" class="view-section active">
+                <div class="card full-width">
+                    <div class="card-header">
+                        <h2>Publishing History</h2>
+                        <p>Distribution of the 1st Year of Publication for top EdTech books.</p>
+                    </div>
+                    <div class="chart-container-large">
+                        <!-- Chart Canvas -->
+                        <canvas id="timelineChart" aria-label="Bar chart showing book publication years" role="img"></canvas>
+                    </div>
+                    <div class="card-footer">
+                        <p>This chart provides a timeline on the number of educational technology books published each year using data from the Open Library</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VIEW 2: LIST (Grid of Cards) -->
+            <section id="view-list" class="view-section hidden">
+                <div class="card-header">
+                    <h2>Research Resources</h2>
+                    <p id="result-count">Fetching data...</p>
+                </div>
+                <!-- Accessible Grid Container -->
+                <div id="book-grid" class="book-grid" role="list">
+                    <!-- Cards injected here by JS -->
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
