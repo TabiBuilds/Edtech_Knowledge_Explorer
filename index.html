@@ -4,46 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EdTech Knowledge Explorer</title>
-    
-    <!-- CSS -->
     <link rel="stylesheet" href="style.css">
-    
-    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Chart.js (Visualization) -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+
 <body>
 
     <div class="app-container">
-        
+
         <!-- SIDEBAR NAVIGATION -->
         <nav class="sidebar">
             <div class="logo-area">
                 <h2>EdTech<br>Explorer</h2>
             </div>
-
             <div class="nav-section">
                 <h3>View Mode</h3>
                 <ul class="nav-links">
-                    <!-- Navigation Tabs -->
-                    <li class="nav-item active" data-target="view-timeline" tabindex="0">
+                    <!-- Navigation Tab: Timeline -->
+                    <li class="nav-item active" id="nav-timeline" onclick="switchView('view-timeline')">
                         <i class="fa-solid fa-chart-line"></i> Timeline
                     </li>
-                    <li class="nav-item" data-target="view-list" tabindex="0">
+                    <!-- Navigation Tab: Resource List -->
+                    <li class="nav-item" id="nav-list" onclick="switchView('view-list')">
                         <i class="fa-solid fa-list"></i> Resource List
                     </li>
                 </ul>
             </div>
-
+            <!-- Navigation Tab: Data Source Section -->
             <div class="nav-section">
                 <h3>Data Source</h3>
                 <div class="info-box">
                     <p>
                         <i class="fa-solid fa-database"></i> 
-                        <!-- LINK TO JSON API -->
-                        <a href="https://openlibrary.org/subjects/education_technology.json" target="_blank" class="api-link" aria-label="Open Open Library JSON API in new tab">Open Library API</a>
+                        <a href="https://openlibrary.org/subjects/education_technology.json" target="_blank" class="api-link">Open Library API</a>
                     </p>
                     <small>Subject: Education Technology</small>
                 </div>
@@ -52,13 +46,10 @@
 
         <!-- MAIN CONTENT AREA -->
         <main class="content-area">
-            
-            <!-- Header -->
             <header class="top-bar">
                 <h1>Exploring Educational Technology Book Trends</h1>
             </header>
-
-            <!-- VIEW 1: TIMELINE (Chart.js) -->
+            <!-- View 1: Timeline Section-->
             <section id="view-timeline" class="view-section active">
                 <div class="card full-width">
                     <div class="card-header">
@@ -66,28 +57,36 @@
                         <p>Distribution of the 1st Year of Publication for top EdTech books.</p>
                     </div>
                     <div class="chart-container-large">
-                        <!-- Chart Canvas -->
-                        <canvas id="timelineChart" aria-label="Bar chart showing book publication years" role="img"></canvas>
+                        <canvas id="timelineChart"></canvas>
                     </div>
                     <div class="card-footer">
-                        <p>This chart provides a timeline on the number of educational technology books published each year using data from the Open Library</p>
+                        <p>This chart provides a timeline on the number of educational technology books published each year using data from the Open Library.</p>
                     </div>
                 </div>
             </section>
-
-            <!-- VIEW 2: LIST (Grid of Cards) -->
+            <!-- View 2: Resource List Section-->
             <section id="view-list" class="view-section hidden">
                 <div class="card-header">
                     <h2>Research Resources</h2>
                     <p id="result-count">Fetching data...</p>
                 </div>
-                <!-- Accessible Grid Container -->
-                <div id="book-grid" class="book-grid" role="list">
-                    <!-- Cards injected here by JS -->
+                <!-- Filtering Controls (which is hidden by default) -->
+                <div id="filter-container" class="filter-box hidden">
+                    <span id="filter-text">Showing filtered results</span>
+                    <div class="filter-buttons">
+                        <button onclick="resetFilter()" class="btn-secondary">Show All</button>
+                        <button onclick="switchView('view-timeline')" class="btn-primary">
+                            <i class="fa-solid fa-arrow-left"></i> Back to Timeline
+                        </button>
+                    </div>
+                </div>
+                <!-- The Book Grid Container -->
+                <div id="book-grid" class="book-grid">
+                    <!-- The books will be loaded here-->
                 </div>
             </section>
-
         </main>
+        
     </div>
 
     <script src="script.js"></script>
